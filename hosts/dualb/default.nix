@@ -9,12 +9,15 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common/nvidia-drivers.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  # boot.loader.grub.enable = true;
+    # boot.loader.grub.useOSProber = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "dualb"; # Define your hostname.
@@ -51,7 +54,19 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  hardware = {
+    opengl.enable = true;
+    nvidia.modesetting.enable = true;
+  };
+
+  drivers.nvidia.enable = true;
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -112,6 +127,9 @@
     gnumake
     cmake
     ripgrep
+        efibootmgr
+        # required for hyprland
+        kitty
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

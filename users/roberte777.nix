@@ -41,13 +41,26 @@
 #   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 #   home.stateVersion = "24.11";
 # }
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+  };
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "roberte777";
   home.homeDirectory = "/home/roberte777";
+
+  home.packages = with pkgs; [steam tmux jetbrains-mono ghostty];
+
+  fonts.fontconfig.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

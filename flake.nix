@@ -46,7 +46,7 @@
         ];
       };
     };
-   # Standalone home-manager configuration entrypoint
+    # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       roberte777 = home-manager.lib.homeManagerConfiguration {

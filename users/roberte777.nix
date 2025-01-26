@@ -34,6 +34,7 @@
     zoxide
     starship
     pyenv
+    libsecret
     # user apps
     steam
     webcord
@@ -50,6 +51,11 @@
     enable = true;
     userName = "roberte777";
     userEmail = "rewilkes0041@gmail.com";
+    aliases = {
+      ci = "commit";
+      co = "checkout";
+      s = "status";
+    };
     extraConfig = {
       credential.helper = "${
         pkgs.git.override {withLibsecret = true;}

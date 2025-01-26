@@ -32,6 +32,8 @@
     hyprlock
     wl-clipboard
     zoxide
+    starship
+    pyenv
     # user apps
     steam
     webcord
@@ -48,6 +50,11 @@
     enable = true;
     userName = "roberte777";
     userEmail = "rewilkes0041@gmail.com";
+    extraConfig = {
+      credential.helper = "${
+        pkgs.git.override {withLibsecret = true;}
+      }/bin/git-credential-libsecret";
+    };
   };
 
   # This value determines the Home Manager release that your

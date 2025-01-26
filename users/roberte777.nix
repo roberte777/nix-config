@@ -79,7 +79,6 @@
       # exec-once = nm-applet &
       # exec-once = waybar & hyprpaper & firefox
       # exec-once = waybar &
-      exec-once = hyprpanel &
       exec-once = hyprpaper &
       exec-once = swaync &
       exec-once = nm-applet --indicator &

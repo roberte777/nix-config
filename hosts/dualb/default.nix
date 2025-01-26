@@ -15,9 +15,14 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.useOSProber = true;
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    devices = ["nodev"];
+    efiSupport = true;
+    gfxmodeBios = "auto";
+    useOSProber = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "dualb"; # Define your hostname.

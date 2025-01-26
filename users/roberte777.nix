@@ -62,6 +62,7 @@
     extraConfig = {
             credential = {
                 credentialStore = "store";
+                helper = "store";
             };
     };
   };

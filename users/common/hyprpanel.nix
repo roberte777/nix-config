@@ -64,8 +64,8 @@
       theme.bar.transparent = true;
 
       theme.font = {
-        name = "Jetbrains Mono NF";
-        size = "16px";
+        name = "Jetbrains Mono Nerd Font";
+        size = "14px";
       };
     };
   };

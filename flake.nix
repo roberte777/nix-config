@@ -42,7 +42,6 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/dualb
-          home-manager.nixosModules.home-manager
         ];
       };
     };

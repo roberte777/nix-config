@@ -14,6 +14,7 @@
   # paths it should manage.
   home.username = "roberte777";
   home.homeDirectory = "/home/roberte777";
+  news.display = "silent";
 
   home.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -29,8 +30,16 @@
     hyprpaper
     libnotify
     hyprlock
+    wl-clipboard
+    zoxide
     # user apps
     steam
+    webcord
+    # programming
+    rustup
+    clang
+    gnumake
+    cmake
   ];
 
   fonts.fontconfig.enable = true;

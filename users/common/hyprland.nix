@@ -1,0 +1,209 @@
+{ config, pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    hyprland
+    rofi
+    firefox
+    ghostty
+    thunar
+    swaync
+    waybar
+    hyprpaper
+  ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    plugins = [inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces];
+
+    # Full configuration
+    settings = {
+      # General settings
+      general = {
+        gaps_in = "5";
+        gaps_out = "10";
+        border_size = "1";
+        col = {
+          active_border = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          inactive_border = "rgba(595959aa";
+        };
+        resize_on_border = "false";
+        allow_tearing = "false";
+        layout = "dwindle";
+      };
+
+      # Decoration settings
+      decoration = {
+        rounding = "10";
+        active_opacity = "0.95";
+        inactive_opacity = "0.95";
+        shadow = {
+          enabled = "true";
+          range = "4";
+          render_power = "3";
+          color = "rgba(1a1a1aee)";
+        };
+        blur = {
+          enabled = "true";
+          size = "10";
+          passes = "3";
+          new_optimizations = "true";
+          ignore_opacity = "true";
+          vibrancy = "0.1696";
+          noise = "0";
+          brightness = "0.9";
+        };
+      };
+
+      # Animation settings
+      animations = {
+        enabled = "true";
+        bezier = [
+          "myBezier 0.05 0.9 0.1 1.05"
+        ];
+        animation = [
+          "windows 1 7 myBezier"
+          "windowsOut 1 7 default popin 80%"
+          "border 1 10 default"
+          "borderangle 1 8 default"
+          "fade 1 7 default"
+          "workspaces 1 6 default"
+        ];
+      };
+
+      # Input settings
+      input = {
+        kb_layout = "us";
+        follow_mouse = "1";
+        sensitivity = "0";
+        touchpad = {
+          natural_scroll = "false";
+        };
+      };
+
+      gestures = {
+        workspace_swipe = "false";
+      };
+
+      device = [
+        {
+          name = "epic-mouse-v1";
+          sensitivity = "-0.5";
+        }
+      ];
+
+      # Dwindle layout settings
+      dwindle = {
+        pseudotile = "true";
+        preserve_split = "true";
+      };
+
+      # Master layout settings
+      master = {
+        new_status = "master";
+      };
+
+      # Miscellaneous settings
+      misc = {
+        force_default_wallpaper = "-1";
+        disable_hyprland_logo = "false";
+      };
+
+      # Bindings
+      "$mainMod" = "SUPER";
+      bind = [
+        "$mainMod, PERIOD, exec, hyprlock"
+        "$mainMod, T, exec, ghostty"
+        "$mainMod, Q, killactive,"
+        "$mainMod, M, exit,"
+        "$mainMod, F, fullscreen"
+        "$mainMod, E, exec, thunar"
+        "$mainMod, V, togglefloating,"
+        "$mainMod, P, pseudo,"
+        "$mainMod, S, togglesplit,"
+        "$mainMod, B, exec, firefox"
+        "$mainMod, G, togglegroup"
+
+        # Movement keybindings
+        "$mainMod, h, movefocus, l"
+        "$mainMod, l, movefocus, r"
+        "$mainMod, k, movefocus, u"
+        "$mainMod, j, movefocus, d"
+
+        "$mainMod SHIFT, h, movewindow, l"
+        "$mainMod SHIFT, l, movewindow, r"
+        "$mainMod SHIFT, k, movewindow, u"
+        "$mainMod SHIFT, j, movewindow, d"
+
+        "$mainMod CTRL, h, resizeactive, -50 0"
+        "$mainMod CTRL, l, resizeactive, 50 0"
+        "$mainMod CTRL, k, resizeactive, 0 -50"
+        "$mainMod CTRL, j, resizeactive, 0 50"
+
+        # Workspace keybindings
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+        "$mainMod, 4, workspace, 4"
+        "$mainMod, 5, workspace, 5"
+        "$mainMod, 6, workspace, 6"
+        "$mainMod, 7, workspace, 7"
+        "$mainMod, 8, workspace, 8"
+        "$mainMod, 9, workspace, 9"
+        "$mainMod, 0, workspace, 10"
+
+        "$mainMod SHIFT, 1, movetoworkspace, 1"
+        "$mainMod SHIFT, 2, movetoworkspace, 2"
+        "$mainMod SHIFT, 3, movetoworkspace, 3"
+        "$mainMod SHIFT, 4, movetoworkspace, 4"
+        "$mainMod SHIFT, 5, movetoworkspace, 5"
+        "$mainMod SHIFT, 6, movetoworkspace, 6"
+        "$mainMod SHIFT, 7, movetoworkspace, 7"
+        "$mainMod SHIFT, 8, movetoworkspace, 8"
+        "$mainMod SHIFT, 9, movetoworkspace, 9"
+        "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+        "$mainMod, A, togglespecialworkspace, magic"
+        "$mainMod SHIFT, A, movetoworkspace, special:magic"
+
+        # Scroll through workspaces
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
+
+        # Mouse bindings
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
+      ];
+
+      # Autostart commands
+      "exec-once" = [
+        "hyprpaper &"
+        "swaync &"
+        "nm-applet --indicator &"
+        "systemctl --user start plasma-polkit-agent &"
+      ];
+
+      # Environment variables
+      env = [
+        "CLUTTER_BACKEND=wayland"
+        "GDK_BACKEND=wayland,x11"
+        "QT_AUTO_SCREEN_SCALE_FACTOR=1"
+        "QT_QPA_PLATFORM=wayland;xcb"
+        "QT_QPA_PLATFORMTHEME=qt5ct"
+        "QT_QPA_PLATFORMTHEME=qt6ct"
+        "QT_SCALE_FACTOR=1"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
+        "XDG_CURRENT_DESKTOP=Hyprland"
+        "XDG_SESSION_DESKTOP=Hyprland"
+        "XDG_SESSION_TYPE=wayland"
+        "MOZ_ENABLE_WAYLAND=1"
+        "ELECTRON_OZONE_PLATFORM_HINT=auto"
+        "WLR_NO_CURSORS=1"
+        "LIBVA_DRIVER_NAME=nvidia"
+        "__GLX_VENDOR_LIBRARY_NAME=nvidia"
+        "NVD_BACKEND=direct"
+      ];
+    };
+  };
+}
+

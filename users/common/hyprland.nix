@@ -195,6 +195,10 @@
         "__GLX_VENDOR_LIBRARY_NAME=nvidia"
         "NVD_BACKEND=direct"
       ];
+
+      source = [
+        "~/.config/hypr/monitors.conf"
+      ];
     };
   };
 }

@@ -62,6 +62,12 @@
 
   fonts.fontconfig.enable = true;
 
+  programs.git = {
+    enable = true;
+    userName = "roberte777";
+    userEmail = "rewilkes0041@gmail.com";
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

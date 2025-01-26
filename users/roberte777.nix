@@ -1,9 +1,12 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
-  imports = [];
+  imports = [
+    ./common/hyprpanel.nix
+  ];
   nixpkgs = {
     config = {
       allowUnfree = true;

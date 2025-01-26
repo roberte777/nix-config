@@ -60,10 +60,10 @@
       s = "status";
     };
     extraConfig = {
-            credential = {
-                credentialStore = "store";
-                helper = "store";
-            };
+      credential = {
+        credentialStore = "store";
+        helper = "store";
+      };
     };
   };
 

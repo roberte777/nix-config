@@ -14,6 +14,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     #hyprpanel
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -52,21 +53,14 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       roberte777 = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux"; # Specify the system as Linux
-          overlays = [
-            inputs.hyprpanel.overlay # Add the hyprpanel overlay
-          ];
-        };
-        extraSpecialArgs = {
-          system = "x86_64-linux";
-          inherit inputs outputs;
-        };
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
           ./users/roberte777.nix
         ];
       };
     };
+  };
   };
 }

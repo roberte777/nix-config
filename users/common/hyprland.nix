@@ -101,17 +101,24 @@
 
       # Bindings
       "$mainMod" = "SUPER";
+      "$terminal" = "ghostty";
+      "$fileManager" = "thunar";
+      "$menu" = "rofi -show drun";
+      "$browser" = "firefox";
+      bindr = [
+        "$mainMod, $mainMod_L, exec, $menu"
+      ];
       bind = [
         "$mainMod, PERIOD, exec, hyprlock"
-        "$mainMod, T, exec, ghostty"
+        "$mainMod, T, exec, $terminal"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, F, fullscreen"
-        "$mainMod, E, exec, thunar"
+        "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo,"
         "$mainMod, S, togglesplit,"
-        "$mainMod, B, exec, firefox"
+        "$mainMod, B, exec, browser"
         "$mainMod, G, togglegroup"
 
         # Movement keybindings

@@ -40,11 +40,13 @@
     pyenv
     libsecret
     # user apps
+    openfortivpn
     # programming
     rustup
     clang
     gnumake
     cmake
+    openssl
   ];
 
   fonts.fontconfig.enable = true;
@@ -62,6 +64,9 @@
       credential = {
         credentialStore = "store";
         helper = "store";
+      };
+      http = {
+        sslVerify = "false";
       };
     };
   };

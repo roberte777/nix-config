@@ -6,7 +6,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -67,12 +69,20 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
-  hardware = {
-    graphics.enable = true;
-    nvidia.modesetting.enable = true;
+
+  hardware.opengl = {
+    package = pkgs-unstable.mesa.drivers;
+    driSupport32Bit = true;
+    package32 = pkgs-unstable.pkgsi686Linux.mesa.drivers;
   };
 
   drivers.nvidia.enable = true;
+
+  hardware.nvidia.prime = {
+    sync.enable = true;
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];

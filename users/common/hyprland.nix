@@ -118,7 +118,7 @@
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo,"
         "$mainMod, S, togglesplit,"
-        "$mainMod, B, exec, browser"
+        "$mainMod, B, exec, $browser"
         "$mainMod, G, togglegroup"
 
         # Movement keybindings

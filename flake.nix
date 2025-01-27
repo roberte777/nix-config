@@ -83,6 +83,24 @@
           ./users/roberte777.nix
         ];
       };
+
+      torch = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux"; # Specify the system as Linux
+          overlays = [
+            inputs.hyprpanel.overlay # Add the hyprpanel overlay
+          ];
+        };
+        extraSpecialArgs = {
+          system = "x86_64-linux";
+          inherit inputs outputs;
+        };
+        modules = [
+          hyprland.homeManagerModules.default
+          # > Our main home-manager configuration file <
+          ./users/torch.nix
+        ];
+      };
     };
   };
 }

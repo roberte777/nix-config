@@ -33,10 +33,10 @@
     # Default: null
     layout = {
       "bar.layouts" = {
-        "0" = {
+        "*" = {
           left = ["dashboard" "workspaces"];
           middle = ["media"];
-          right = ["volume" "systray" "notifications"];
+          right = ["clock" "volume" "network" "bluetooth" "systray" "notifications"];
         };
       };
     };

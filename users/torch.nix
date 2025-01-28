@@ -41,6 +41,7 @@
     starship
     pyenv
     libsecret
+    yazi
     # user apps
     openfortivpn
     # programming

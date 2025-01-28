@@ -7,6 +7,7 @@
   imports = [
     ./common/hyprpanel.nix
     ./common/hyprland.nix
+    ./common/spicetify.nix
   ];
   nixpkgs = {
     config = {

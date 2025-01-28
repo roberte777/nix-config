@@ -50,6 +50,8 @@
     cmake
     openssl
     pkg-config
+    nodePackages.prettier
+    prettierd
   ];
 
   fonts.fontconfig.enable = true;

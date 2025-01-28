@@ -20,9 +20,10 @@
   home.homeDirectory = "/home/roberte777";
   news.display = "silent";
 
-  home.sessionVariables = {
+  programs.zsh.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
+    PKG_CONFIG_PATH = "$PKG_CONFIG_PATH:$HOME/.nix-profile/lib/pkgconfig";
   };
 
   home.packages = with pkgs; [
@@ -47,6 +48,7 @@
     gnumake
     cmake
     openssl
+    pkg-config
   ];
 
   fonts.fontconfig.enable = true;

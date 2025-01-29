@@ -42,6 +42,7 @@
     pyenv
     libsecret
     yazi
+    dolphin
     # user apps
     openfortivpn
     # programming

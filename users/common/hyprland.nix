@@ -248,7 +248,7 @@
       };
       label = [
         {
-          text = ''cmd[update:1000] echo "$(date +\"%A, %B %d\")"'';
+          text = ''cmd[update:1000] echo "$(date +"%A, %B %d")"'';
           color = "rgba(242, 243, 244, 0.75)";
           font_size = 22;
           font_family = "JetBrains Mono";
@@ -257,7 +257,7 @@
           valign = "center";
         }
         {
-          text = ''cmd[update:1000] echo "$(date +\"%-I:%M\")"'';
+          text = ''cmd[update:1000] echo "$(date +"%-I:%M")"'';
           color = "rgba(242, 243, 244, 0.75)";
           font_size = 95;
           font_family = "JetBrains Mono Extrabold";

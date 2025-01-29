@@ -46,12 +46,6 @@
     # user apps
     openfortivpn
     # programming
-    rustup
-    clang
-    gnumake
-    cmake
-    openssl
-    pkg-config
     nodePackages.prettier
     prettierd
   ];
